@@ -4,8 +4,7 @@ class UsersController <  ApplicationController
         erb :login
     end
 
-    #login in form, find user, login user(create a session)
-    post '/login' do
+    post '/login' do #login in form, find user, login user(create a session)
         @user = User.find_by(email: params[:email])
         if @user.authenticate(params[:password])
             session[:user_id] = @user.id #logs in user
@@ -36,9 +35,9 @@ class UsersController <  ApplicationController
         erb :'/users/show'
     end
 
-    get '/logout' do
+    get '/logout' do #logout route
         session.clear
-        direct '/'
+        redirect '/'
     end
 
 end
