@@ -1,0 +1,9 @@
+<h2> Create a new PositivePost </h2>
+<ul>
+    <form class="" action="/positive_posts" method="post">
+    <textarea name="title" placeholder="Title" style="height:50px; width:200px"></textarea><br>
+    <textarea name="text" placeholder="Text" style="height:100px; width:200px"></textarea><br>
+    <input type="hidden" name="author" value="<%= session[:email] %>">
+    <input type="submit"/>
+  </form>
+</ul>
