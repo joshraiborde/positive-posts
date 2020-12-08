@@ -5,7 +5,7 @@ class CreateUsersTable < ActiveRecord::Migration
       t.string :lastname
       t.string :email
       t.string :password_digest
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
