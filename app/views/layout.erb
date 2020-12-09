@@ -21,8 +21,13 @@
       <a href='/positive_posts/new'>Create PositivePosts</a>
       <% end %>
     </div>
-
     <div class="wrapper">
+    <% if flash[:message]%>
+      <h3><%= flash[:message]%>
+    <% end %>
+    <% if flash[:errors]%>
+      <h3 style="color: red;"><%= flash[:errors] %></h3>
+    <% end %>
 
         <%= yield %>
 
