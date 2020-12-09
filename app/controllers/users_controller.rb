@@ -30,12 +30,11 @@ class UsersController <  ApplicationController
             flash[:errors] = "Uh-Oh. We weren't able to make an account because #{@user.errors.full_messages.to_sentence}"
             redirect '/signup'
         end
-
     end
 
     get '/users/:id' do #user's show route
         @user = User.find_by(id: params[:id])
-        
+        redirect_if_not_logged_in
         erb :'/users/show'
     end
 
