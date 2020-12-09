@@ -1,9 +1,18 @@
 <h1><p><%= @positive_post.user.firstname.capitalize %> <%= @positive_post.user.lastname.capitalize %>'s PositivePost</p> </h1>
 
+<p>Created on: <%= @positive_post.created_at %> </p>
 <p>Title: <%= @positive_post.title %></p>
 <p>Text: <%= @positive_post.text %></p>
 
 <% if authorized_to_edit?(@positive_post) %>
-<a href="/positive_posts/<%= @positive_post.id %>/edit">Edit Devotion</a>
-Delete Link
+<a href="/positive_posts/<%= @positive_post.id %>/edit">Edit PositivePost</a>
+<br><br>
+<form class="" action="/positive_posts/<%= @positive_post.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="" value="Delete this Post">
+    </form>
+<br>
+
+    <a href="/"><%= @positive_post.user.firstname.capitalize %> <%= @positive_post.user.lastname.capitalize %>'s PositivePosts!</a>
+
 <% end %>
