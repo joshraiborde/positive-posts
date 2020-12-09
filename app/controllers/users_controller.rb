@@ -6,10 +6,12 @@ class UsersController <  ApplicationController
 
     post '/login' do #login in form, find user, login user(create a session)
         @user = User.find_by(email: params[:email])
-        if @user.authenticate(params[:password])
+        if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id #logs in user
+            flash[:message] = "Welcome, #{@user.firstname.capitalize} #{@user.lastname.capitalize}!"
             redirect "/users/#{@user.id}"
         else
+            flash[:errors] = "Uh-oh. Either the Email and/or Password is incorrect. Please try again or Sign Up."
             redirect '/login'
         end
     end
@@ -19,11 +21,13 @@ class UsersController <  ApplicationController
     end
 
     post '/users' do #create a new user and persist the user to the DB
-        if params[:name] != "" && params[:lastname] != "" && params[:email] != "" && params[:password] != "" 
-            @user = User.create(params)
+        @user = User.new(params)
+        if @user.save
             session[:user_id] = @user.id #logs in user
+            flash[:message] = "Congrats! #{@user.firstname.capitalize} #{@user.lastname.capitalize}, you have created a PositivePost Account!"
             redirect "/users/#{@user.id}"
         else
+            flash[:errors] = "Uh-Oh. We weren't able to make an account because #{@user.errors.full_messages.to_sentence}"
             redirect '/signup'
         end
 
