@@ -42,7 +42,7 @@ class PositivePostsController <  ApplicationController
     patch '/positive_posts/:id' do #find entry, update and redirect to show page
         set_positive_post
         if logged_in?
-            if authorized_to_edit?(@positive_post)
+            if @positive_post.user == current_user && params[:title] != "" && params[:text] != ""
                 @positive_post.update(title: params[:title], text: params[:text])
                 redirect "/positive_posts/#{@positive_post.id}"
             else
@@ -50,6 +50,16 @@ class PositivePostsController <  ApplicationController
             end
         else
             redirect '/'
+        end
+      end
+
+      delete '/positive_posts/:id' do #deletes authorized user's post
+        set_positive_post
+        if authorized_to_edit?(@positive_post)
+            @positive_post.destroy
+            redirect '/positive_posts'
+        else
+            redirect '/positive_posts'
         end
       end
 
