@@ -21,13 +21,41 @@ class PositivePostsController <  ApplicationController
     end
 
     get '/positive_posts/:id' do #show route
-        @positive_post = PositivePost.find(params[:id])
+        set_positive_post
         erb :'/positive_posts/show'
     end
 
     get '/positive_posts/:id/edit' do #render edit form
-        erb :'/positive_posts/edit'
+        set_positive_post
+        if logged_in?
+            if @positive_post.user == current_user
+            erb :'/positive_posts/edit'
+            else
+                redirect "users/#{@current_user.id}"
+            end
+        else
+            redirect '/'
+        end
     end
 
+    patch '/positive_posts/:id' do #find entry, update and redirect to show page
+        set_positive_post
+        if logged_in?
+            if @positive_post.user == current_user
+                @positive_post.update(title: params[:title], text: params[:text])
+                redirect "/positive_posts/#{@positive_post.id}"
+            else
+                redirect "users/#{@current_user.id}"
+            end
+        else
+            redirect '/'
+        end
+      end
+
+# index route for all entries
+private
+def set_positive_post
+    @positive_post = PositivePost.find(params[:id])
+end
 
 end
