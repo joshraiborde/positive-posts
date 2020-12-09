@@ -3,5 +3,7 @@
 <p>Title: <%= @positive_post.title %></p>
 <p>Text: <%= @positive_post.text %></p>
 
-
+<% if authorized_to_edit?(@positive_post) %>
 <a href="/positive_posts/<%= @positive_post.id %>/edit">Edit Devotion</a>
+Delete Link
+<% end %>
