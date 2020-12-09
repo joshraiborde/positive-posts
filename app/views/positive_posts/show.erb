@@ -1,1 +1,7 @@
-show PositivePosts form
+<h1><p><%= @positive_post.user.firstname.capitalize %> <%= @positive_post.user.lastname.capitalize %>'s PositivePost</p> </h1>
+
+<p>Title: <%= @positive_post.title %></p>
+<p>Text: <%= @positive_post.text %></p>
+
+
+<a href="/positive_posts/<%= @positive_post.id %>/edit">Edit Devotion</a>
