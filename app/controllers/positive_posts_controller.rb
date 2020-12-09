@@ -14,9 +14,11 @@ class PositivePostsController <  ApplicationController
             redirect '/'
         end
         if params[:title] != "" && params[:text] != ""
+            flash[:message] = "A PostivePost has been created!"
             @positive_post = PositivePost.create(title: params[:title], text: params[:text], user_id: current_user.id)
             redirect "/positive_posts/#{@positive_post.id}"
         else
+            flash[:message] = "Uh-oh, something went wrong. Can't have an empty post."
             redirect '/positive_posts/new'
         end
     end
