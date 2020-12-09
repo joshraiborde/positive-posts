@@ -10,15 +10,13 @@ class PositivePostsController <  ApplicationController
     end
 
     post '/positive_posts' do #create a new entry
-        if !logged_in?
-            redirect '/'
-        end
+        redirect_if_not_logged_in
         if params[:title] != "" && params[:text] != ""
             flash[:message] = "A PostivePost has been created!"
             @positive_post = PositivePost.create(title: params[:title], text: params[:text], user_id: current_user.id)
             redirect "/positive_posts/#{@positive_post.id}"
         else
-            flash[:message] = "Uh-oh, something went wrong. Can't have an empty post."
+            flash[:error] = "Uh-oh, something went wrong. Can't have an empty title/post."
             redirect '/positive_posts/new'
         end
     end
@@ -30,35 +28,30 @@ class PositivePostsController <  ApplicationController
 
     get '/positive_posts/:id/edit' do #render edit form
         set_positive_post
-        if logged_in?
+        redirect_if_not_logged_in
             if authorized_to_edit?(@positive_post)
                 erb :'/positive_posts/edit'
             else
                 redirect "users/#{@current_user.id}"
             end
-        else
-            redirect '/'
-        end
     end
 
     patch '/positive_posts/:id' do #find entry, update and redirect to show page
         set_positive_post
-        if logged_in?
+        redirect_if_not_logged_in
             if @positive_post.user == current_user && params[:title] != "" && params[:text] != ""
                 @positive_post.update(title: params[:title], text: params[:text])
                 redirect "/positive_posts/#{@positive_post.id}"
             else
                 redirect "users/#{@current_user.id}"
             end
-        else
-            redirect '/'
-        end
       end
 
       delete '/positive_posts/:id' do #deletes authorized user's post
         set_positive_post
         if authorized_to_edit?(@positive_post)
             @positive_post.destroy
+            flash[:message] = "That post was deleted."
             redirect '/positive_posts'
         else
             redirect '/positive_posts'
