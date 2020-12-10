@@ -1,4 +1,15 @@
 <h2><%= @user.firstname.capitalize %> <%= @user.lastname.capitalize %>'s show page </h2>
 <h3>email: </h3>
 <h4><%= @user.email %> </h4>
+<br>
+<p style="border-bottom: 10px solid #ccc;"></p>
+<% @user.positive_posts.each do |positive_post| %>
+<h4><a href="/positive_posts/<%= positive_post.id %>"><%= positive_post.formatted_created_at %></a></h4>
+<p>Title: <%= positive_post.title %>
+<br>Text: <%= positive_post.text %>
+<br>By <%= positive_post.user.firstname.capitalize %> <%= positive_post.user.lastname.capitalize %></p>
 
+    <p style="border-bottom: 10px solid #ccc;"></p>
+<% end %>
+
+Click on one of the links at the top of the page to get started!
