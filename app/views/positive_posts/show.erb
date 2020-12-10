@@ -16,3 +16,7 @@
     <a href="/"><%= @positive_post.user.firstname.capitalize %> <%= @positive_post.user.lastname.capitalize %>'s PositivePosts!</a>
 
 <% end %>
+
+<% if !current_user %>
+<a href="/users/<%= @positive_post.user.id %>"><%= @positive_post.user.firstname.capitalize %> <%= @positive_post.user.lastname.capitalize %>'s PositivePosts!</a> </p>
+<% end %>
