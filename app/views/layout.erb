@@ -18,7 +18,8 @@
     <% if logged_in? %>
       <a href='/logout'>Logout</a> |
       <a href='/positive_posts'>View All PositivePosts</a> |
-      <a href='/positive_posts/new'>Create PositivePosts</a>
+      <a href='/positive_posts/new'>Create PositivePosts</a> |
+      <a href="/users/<%= current_user.id %>"><%= current_user.firstname.capitalize %> <%= current_user.lastname.capitalize %>'s Posts</a>
       <% end %>
     </div>
     <div class="wrapper">
