@@ -1,7 +1,7 @@
 Click on a PositivePost to be inspired!
 <br><br>
 <% @positive_posts.each do |positive_post| %>
-<h4><a href="/positive_posts/<%= positive_post.id %>"><%= positive_post.created_at %></a></h4>
+<h4><a href="/positive_posts/<%= positive_post.id %>"><%= positive_post.formatted_created_at %></a></h4>
 <p><%= positive_post.title %>
 <br><%= positive_post.text %><br>
 <br>By: <%= positive_post.user.firstname.capitalize %> <%= positive_post.user.lastname.capitalize %></p>
