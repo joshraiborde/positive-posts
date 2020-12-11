@@ -38,12 +38,6 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    def current_user_full_name
-      "#{@current_user.firstname.capitalize} #{@current_user.lastname.capitalize}"
-      # current_user.firstname.capitalize
-      # current_user.lastname.capitalize 
-    end
-
     # def full_name
     #   "#{@user.firstname.capitalize}
     #   #{@user.lastname.capitalize}"
