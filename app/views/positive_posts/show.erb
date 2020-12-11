@@ -1,4 +1,4 @@
-<h1><p><%= @positive_post.user.firstname.capitalize %> <%= @positive_post.user.lastname.capitalize %>'s PositivePost</p> </h1>
+<h1><p><%= @positive_post.user.full_name %>'s PositivePost</p> </h1>
 
 <p>Created on: <%= @positive_post.formatted_created_at %> </p>
 <p>Title: <%= @positive_post.title %></p>
@@ -13,10 +13,10 @@
     </form>
 <br>
 
-    <a href="/"><%= @positive_post.user.firstname.capitalize %> <%= @positive_post.user.lastname.capitalize %>'s PositivePosts!</a>
+    <a href="/"><%= @positive_post.user.full_name %>'s PositivePosts!</a>
 
 <% end %>
 
-<% if !current_user %>
-<a href="/users/<%= @positive_post.user.id %>"><%= @positive_post.user.firstname.capitalize %> <%= @positive_post.user.lastname.capitalize %>'s PositivePosts!</a> </p>
+<% if @user != current_user %>
+<a href="/users/<%= @positive_post.user.id %>"><%= @positive_post.user.full_name %>'s PositivePosts!</a> </p>
 <% end %>
