@@ -1,9 +1,9 @@
-<h2><%= @user.firstname.capitalize %> <%= @user.lastname.capitalize %>'s PositivePosts! </h2>
+<h2><%= full_name %>'s PositivePosts! </h2>
 <h3>email: <%= @user.email %></h3>
 Click on one of the links at the top of the page to get started!
 <br>
 <p style="border-bottom: 10px solid #ccc;"></p>
-<% @user.positive_posts.each do |positive_post| %>
+<% @user.positive_posts.reverse.each do |positive_post| %>
 <h4><a href="/positive_posts/<%= positive_post.id %>"><%= positive_post.formatted_created_at %></a></h4>
 <p>Title: <%= positive_post.title %>
 <br>Text: <%= positive_post.text %>
