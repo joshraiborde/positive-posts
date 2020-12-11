@@ -43,4 +43,11 @@ class UsersController <  ApplicationController
         redirect '/'
     end
 
+    # private
+    # def full_name
+    #     "#{@user.firstname.capitalize}
+    #     #{@user.lastname.capitalize}"
+    #   end
+
+
 end
