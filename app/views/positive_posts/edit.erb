@@ -1,6 +1,6 @@
 <form class="" action="/positive_posts/<%= @positive_post.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
-    <label for="text"><%= @positive_post.user.firstname.capitalize %>'s PostivePosts:</label>
+    <label for="text"><%= @positive_post.user.full_name %>'s PostivePosts:</label>
     <br><br>
     <label for="text">Title:</label> <br>
     <textarea name="title" style="width:auto; height:auto;"><%= @positive_post.title %></textarea>
