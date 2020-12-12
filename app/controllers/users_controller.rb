@@ -8,7 +8,7 @@ class UsersController <  ApplicationController
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id #logs in user
-            flash[:message] = "Welcome, #{@user.firstname.capitalize} #{@user.lastname.capitalize}!"
+            flash[:message] = "Welcome, #{current_user.full_name}!"
             redirect "/users/#{@user.id}"
         else
             flash[:errors] = "Uh-oh. Either the Email and/or Password is incorrect. Please try again or Sign Up."
@@ -24,7 +24,7 @@ class UsersController <  ApplicationController
         @user = User.new(params)
         if @user.save
             session[:user_id] = @user.id #logs in user
-            flash[:message] = "Congrats! #{@user.firstname.capitalize} #{@user.lastname.capitalize}, you have created a PositivePost Account!"
+            flash[:message] = "Congrats! #{current_user.full_name}, you have created a PositivePost Account!"
             redirect "/users/#{@user.id}"
         else
             flash[:errors] = "Uh-Oh. We weren't able to make an account because #{@user.errors.full_messages.to_sentence}"
@@ -42,12 +42,4 @@ class UsersController <  ApplicationController
         session.clear
         redirect '/'
     end
-
-    # private
-    # def full_name
-    #     "#{@user.firstname.capitalize}
-    #     #{@user.lastname.capitalize}"
-    #   end
-
-
 end
