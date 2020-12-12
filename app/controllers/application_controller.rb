@@ -37,13 +37,5 @@ class ApplicationController < Sinatra::Base
         redirect '/'
       end
     end
-
-    # def full_name
-    #   "#{@user.firstname.capitalize}
-    #   #{@user.lastname.capitalize}"
-    # end
-
   end
-
-
 end
