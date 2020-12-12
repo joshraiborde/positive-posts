@@ -16,7 +16,7 @@ class PositivePostsController <  ApplicationController
             @positive_post = PositivePost.create(title: params[:title], text: params[:text], user_id: current_user.id)
             redirect "/positive_posts/#{@positive_post.id}"
         else
-            flash[:error] = "Uh-oh, something went wrong. Can't have an empty title/post."
+            flash[:errors] = "Uh-oh, something went wrong. Can't have an empty title/post."
             redirect '/positive_posts/new'
         end
     end
