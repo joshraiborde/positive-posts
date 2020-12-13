@@ -51,7 +51,7 @@ class PositivePostsController <  ApplicationController
         set_positive_post
         if authorized_to_edit?(@positive_post)
             @positive_post.destroy
-            flash[:errors] = "That post was deleted."
+            flash[:errors] = "That post has been deleted."
             redirect "users/#{@current_user.id}"
         else
             redirect '/positive_posts'
