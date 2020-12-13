@@ -18,8 +18,10 @@
     <% if logged_in? %>
       <a href='/logout'>Logout</a> |
       <a href='/positive_posts'>View All PositivePosts</a> |
-      <a href='/positive_posts/new'>Create PositivePosts</a> |
+      <a href='/positive_posts/new'>Create PositivePost</a> |
+      <% if @user != current_user %>
       <a href="/users/<%= current_user.id %>"><%= current_user.full_name %>'s Posts</a>
+      <% end %>
       <% end %>
     </div>
     <div class="wrapper">
