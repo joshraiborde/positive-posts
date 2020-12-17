@@ -20,6 +20,11 @@ class PositivePostsController <  ApplicationController
             redirect '/positive_posts/new'
         end
     end
+    
+    get '/positive_posts/alphabetical'do
+        @positive_posts = PositivePost.all.order("lower(title)")
+        erb :'positive_posts/index'    
+    end
 
     get '/positive_posts/:id' do #show route
         set_positive_post
